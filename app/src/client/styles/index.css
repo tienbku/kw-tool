@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body, html, #root {
+  @apply bg-slate-200 !important;
+  font-family: 'Roboto', sans-serif;
+}
+
+.roboto {
+  font-family: 'Roboto', sans-serif !important;
+}
+
+.inter {
+  font-family: 'Inter', sans-serif !important;
+}
+
+.ant-select-auto-complete input[type="search"]:focus {
+  box-shadow: none !important;
+}

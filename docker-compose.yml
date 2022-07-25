@@ -1,0 +1,51 @@
+version: '3'
+services:
+  mongo:
+    image: mongo:latest
+    restart: on-failure
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./.data:/data/db
+  redis:
+    image: redis:latest
+    restart: on-failure
+    ports:
+      - "6379:6379"
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev.server
+    volumes:
+      - ./app/src:/home/node/src
+      - ./app/.env.dev:/home/node/.env
+      - ./app/creds.json:/home/node/creds.json
+      - ./app/package.json:/home/node/package.json
+      - ./app/tailwind.config.js:/home/node/tailwind.config.js
+    command: npm run dev
+    ports:
+      - "8080:8080"
+      - "1234:1234"
+    depends_on:
+      - redis
+      - mongo
+    environment:
+      NODE_ENV: development
+      DEBUG: node-server:*
+  services:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev.services
+    ports:
+      - "8081:8081"
+    volumes:
+      - ./app/src:/home/node/src
+      - ./app/.env.dev:/home/node/.env
+      - ./app/creds.json:/home/node/creds.json
+    command: npm run dev:services
+    depends_on:
+      - redis
+      - mongo
+    environment:
+      NODE_ENV: development
+      DEBUG: node-services:*

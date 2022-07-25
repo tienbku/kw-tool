@@ -1,0 +1,298 @@
+import { RecoilRoot } from 'recoil';
+import Nav from '../../components/Nav';
+import { API_URL } from '../../../constants';
+import { createRoot } from 'react-dom/client';
+import { flatten, sortBy, sum, uniq } from 'lodash';
+import { formatNumber, trpc } from '../../utils';
+import { cleanKeyword } from '../../../shared/keyword';
+import React, { useEffect, useMemo, useState } from 'react';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { ITopicMapItem } from '../../../types/IDiscoveryTopicMap';
+import { IDiscoveryItemOutput } from '../../../api/discovery/input/inputGetDiscoveryItems';
+import type { IDiscoveryTopicMapItemOutput } from '../../../api/discovery/input/apiGetTopicMap';
+import { REPORT_STATUS_COMPLETED, REPORT_STATUS_ERROR, REPORT_STATUS_PROCESSING, REPORT_STATUS_QUEUED } from '../../../types/IReportStatus';
+
+interface customWindow extends Window {
+  __reportId: string;
+}
+declare const window: customWindow;
+
+const TopicMap = () => {
+  const reportId = useMemo(() => window.__reportId, []);
+
+  const user = trpc.useQuery(['users:me']);
+  const authenticated = user.data?.authenticated;
+  const credits = user.data?.credits || 0;
+
+  const doGetBase = trpc.useQuery(['discovery:base', { reportId }], {
+    refetchOnWindowFocus: false,
+  });
+
+  const doGetTopicMap = trpc.useQuery(['discovery:get-topic-map', { reportId }], {
+    refetchOnWindowFocus: false,
+    enabled: authenticated === true && doGetBase.data !== undefined,
+  });
+  const base = useMemo(() => doGetBase.data?.report, [doGetBase.data?.report]);
+  const topicMap = useMemo(() => doGetTopicMap.data, [doGetTopicMap.data]);
+  const categories = useMemo(() => doGetTopicMap.data?.categories, [doGetTopicMap.data?.categories]);
+  const map = useMemo(() => {
+    const current = doGetTopicMap.data?.map;
+    if (current) {
+      return sortBy(current, (item: ITopicMapItem) => -item.count) as ITopicMapItem[];
+    }
+    return [];
+  }, [doGetTopicMap.data?.map]);
+
+  useEffect(() => {
+    if (topicMap && topicMap.status !== REPORT_STATUS_COMPLETED && topicMap.status !== REPORT_STATUS_ERROR) {
+      setTimeout(() => {
+        doGetTopicMap.refetch();
+      }, 10_000);
+    }
+  });
+
+  if (!base || doGetBase.isLoading || !topicMap || doGetTopicMap.isLoading) {
+    return (
+      <div>
+        <Nav authenticated={authenticated || false} credits={credits || undefined} />
+        <div className="container mx-auto mt-5">
+          <div className="px-3 py-2 rounded bg-slate-700 text-white">
+            <i className="fa-solid fa-spinner fa-spin" />
+            <span className="ml-2">Loading...</span>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (topicMap.status === REPORT_STATUS_QUEUED || topicMap.status === REPORT_STATUS_PROCESSING) {
+    return (
+      <div>
+        <Nav authenticated={authenticated || false} credits={credits || undefined} />
+        <div className="container mx-auto mt-5">
+          <a className="block text-base font-medium text-sky-700 hover:text-sky-800 hover:underline mb-2" href={`/discovery/${reportId}`}>
+            <i className="fa-solid fa-arrow-left pr-2" />
+            Go back to report
+          </a>
+          <div className="px-3 py-2 rounded bg-slate-700 text-white">
+            <i className="fa-solid fa-spinner fa-spin" />
+            <span className="ml-2">Your Topic Map is being created, please wait for a few minutes.</span>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  console.log(map.map((item: ITopicMapItem) => item.name));
+  console.log(sum(categories?.map((category) => category.keywords.length)));
+
+  return (
+    <div>
+      <Nav authenticated={authenticated || false} credits={credits || undefined} />
+      <div className="container mx-auto px-3 mt-5">
+        <a className="block text-base font-medium text-sky-700 hover:text-sky-800 hover:underline mb-2" href={`/discovery/${reportId}`}>
+          <i className="fa-solid fa-arrow-left pr-2" />
+          Go back to report
+        </a>
+        <div className="pb-10">
+          <div className="text-3xl font-medium text-slate-600 text-center">
+            {base.name} <span className="text-xl text-slate-600 font-normal capitalize">Topic Map</span>
+          </div>
+          <div className="flex flex-wrap justify-center mt-3">
+            {/*
+            <div className="w-3/12">
+              <div className="rounded bg-white">
+                <div className="p-3 border-b border-slate-200">
+                  <Button text="Download" icon="fa-solid fa-download" onClick={() => console.log('download')} />
+                </div>
+                <div className="p-3">
+                  <div className="text-base font-medium text-slate-600 mb-1">Domain</div>
+                  <InputWithIcon label="Domain" placeholder="Domain" onChange={(s) => setDomain(s)} className="mb-2" />
+                  <div className="text-base font-medium text-slate-600 mb-1">Competitors</div>
+                  <textarea
+                    rows={5}
+                    value={competitors}
+                    placeholder="Competitors"
+                    onChange={(e) => setCompetitors(e.target.value.split('\n'))}
+                    className={`w-full shadow-sm focus:ring-sky-500 focus:border-sky-500 sm:text-sm border border-gray-300 rounded-md`}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="w-9/12">
+            */}
+            <div className="w-full lg:w-8/12">
+              <div className="rounded bg-white">
+                {categories?.map((category, index) => {
+                  const categoryMaps = map.filter((item) => [...category.keywords, category.key].includes(item.name));
+                  return (
+                    <div key={`${category.key}-${index}`} className="">
+                      <div className="text-slate-600 font-medium text-lg capitalize pl-2 pt-1">{category.name}</div>
+                      <div className="">
+                        {categoryMaps.map((topic, index) => {
+                          if (!topic) {
+                            return undefined;
+                          }
+                          return <Topic items={topicMap.items || []} key={`${category.key}-${topic.key}-${index}`} topic={topic} />;
+                        })}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const Topic = ({ topic, items }: { topic: IDiscoveryTopicMapItemOutput; items: IDiscoveryItemOutput[] }) => {
+  const [open, setOpen] = useState(false);
+
+  const key = topic.key ? cleanKeyword(topic.key) : '';
+  const name = topic.name ? cleanKeyword(topic.name) : '';
+  const clusters: Array<{
+    count: number;
+    keyword: string;
+    keywords: string[];
+  }> = [];
+
+  for (const key of Object.keys(topic.clusters)) {
+    const cluster = topic.clusters[key];
+    clusters.push({
+      keyword: key,
+      keywords: cluster,
+      count: cluster.length,
+    });
+  }
+
+  const clustersKeywords = uniq(flatten(clusters.map((cluster) => cluster.keywords)));
+  const volume = items
+    .filter((item) => clustersKeywords.includes(item.keyword))
+    .map((item) => item.volume)
+    .reduce((a, b) => (a || 0) + (b || 0), 0);
+
+  return (
+    <div className="border-b border-slate-200">
+      <div className={`flex items-center py-2 px-3 ${open ? 'bg-yellow-50' : ''}`}>
+        <div className="cursor-pointer text-slate-700" onClick={() => setOpen((prev) => !prev)}>
+          <i className={`fa-solid fa-caret-${open ? 'down' : 'right'} fa-md`} />
+        </div>
+        <div className="pl-3 flex-grow">
+          <div className="text-base text-slate-700 capitalize">
+            {name || key}{' '}
+            <span title="# of KWs" className="text-xs text-purple-500 pl-2">
+              {topic.count}
+            </span>
+          </div>
+        </div>
+        <div className="w-[75px] text-right text-sm text-slate-500 select-none">
+          <div title="Volume">{formatNumber(volume || 0)}</div>
+        </div>
+      </div>
+      {open && (
+        <div className="pb-2">
+          {clusters.map((cluster, index) => {
+            return (
+              <Cluster
+                items={items}
+                count={cluster.count}
+                keyword={cluster.keyword}
+                keywords={cluster.keywords}
+                key={`${cluster.keyword}-${index}`}
+              />
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+};
+
+const Cluster = ({
+  count,
+  items,
+  keyword,
+  keywords,
+}: {
+  count: number;
+  keyword: string;
+  keywords: string[];
+  items: IDiscoveryItemOutput[];
+}) => {
+  const [open, setOpen] = useState(false);
+  const keywordsWithData = sortBy(
+    keywords.map((keyword) => items.find((item) => item.keyword === keyword)),
+    (item) => -(item?.volume || 0),
+  );
+
+  const volume = items
+    .filter((item) => keywords.includes(item.keyword))
+    .map((item) => item.volume)
+    .reduce((a, b) => (a || 0) + (b || 0), 0);
+
+  return (
+    <div className="py-1 border-t border-slate-200">
+      <div className="flex items-center pl-6 pr-3">
+        <div className="cursor-pointer text-slate-400" onClick={() => setOpen((prev) => !prev)}>
+          <i className={`fa-solid fa-caret-${open ? 'down' : 'right'}`} />
+        </div>
+        <div className="text-base text-slate-700 pl-3 flex-grow">
+          {keyword} <span className="text-xs text-purple-500 pl-2">{count}</span>
+        </div>
+        <div className="w-[75px] text-right text-sm text-slate-500 select-none">{formatNumber(volume || 0)}</div>
+      </div>
+      {open && (
+        <div className="mt-1">
+          {keywordsWithData.map((item, index) => {
+            if (!item) {
+              return undefined;
+            }
+            return (
+              <div key={`${item.keyword}-${index}`} className="pl-12 pr-3 py-1 border-t border-slate-200 flex flex-wrap items-center">
+                <div className="flex-grow text-slate-800">
+                  <div>{item.keyword}</div>
+                  {item.serpFeatures && (
+                    <div className="w-full text-[10px] flex items-center text-slate-600 uppercase">
+                      {item.serpFeatures.map((feature, index) => {
+                        return (
+                          <div key={`${feature}-${index}`} className="mr-2">
+                            {feature.replace(/_/g, ' ')}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+                <div className="w-[75px] text-right text-sm text-slate-500 select-none">
+                  {item.volume ? formatNumber(item.volume) : <span>&mdash;</span>}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+};
+
+const TopicMapWrapper = () => {
+  const [queryClient] = useState(() => new QueryClient());
+  const [trpcClient] = useState(() => trpc.createClient({ url: API_URL + '/__t' }));
+  return (
+    <RecoilRoot>
+      <trpc.Provider client={trpcClient} queryClient={queryClient}>
+        <QueryClientProvider client={queryClient}>
+          <TopicMap />
+        </QueryClientProvider>
+      </trpc.Provider>
+    </RecoilRoot>
+  );
+};
+
+const container = document.getElementById('root');
+// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+const root = createRoot(container!);
+root.render(<TopicMapWrapper />);

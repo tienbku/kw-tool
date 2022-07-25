@@ -1,0 +1,6 @@
+.git
+.idea
+.data/
+app/node_modules
+app/dist
+app/.parcel-cache

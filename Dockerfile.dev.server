@@ -1,0 +1,18 @@
+FROM node:16-bullseye
+
+RUN apt update
+RUN apt -y install build-essential python3 python3-dev g++
+
+ENV NODE_ENV=development
+
+WORKDIR /home/node
+
+COPY app/package.json .
+COPY app/package-lock.json .
+RUN npm install
+
+COPY app .
+
+USER node
+EXPOSE 8080
+CMD ["npm", "run", "dev"]
