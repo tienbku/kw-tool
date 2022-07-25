@@ -6,6 +6,8 @@ You can support further development on [Patreon](https://www.patreon.com/_pablod
 
 Made by [Pablo Rosales](http://github.com/pablorosales) on its free time.
 
+![Screenshot](./screenshot.png)
+
 ## Requirements
 
 Code requires fontawesome icons to work, on `app/src/assets/fontawesome`.
