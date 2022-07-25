@@ -26,7 +26,7 @@ Includes features like:
 
 ## Env file (configuration)
 
-Add a file on `app/src.env.dev` with this (updated with your credentials):
+Add a file on `app/.env.dev` with this (updated with your credentials):
 
 ```dotenv
 SENTENCE_TRANSFORMERS_HOME=/tmp/.cache
