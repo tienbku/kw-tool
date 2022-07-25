@@ -39,8 +39,8 @@ const Clusters = ({ clusters }: Props) => {
   return (
     <div className="bg-white rounded shadow mb-3 select-none">
       <div className="pt-3 px-3">
-        <div className="text-sky-600">
-          <i className="fa-solid fa-circle-question" />
+        <div className="flex items-center text-sky-600">
+          <i className="ri-question-line" />
           <span className="text-slate-500 text-xs pl-2">Use clusters to find topics, add them to your groups.</span>
         </div>
       </div>

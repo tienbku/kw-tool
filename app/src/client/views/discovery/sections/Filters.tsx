@@ -46,7 +46,7 @@ const Filters = ({ reportNotFinished }: Props) => {
     <div className="bg-white pt-3 pb-4 rounded shadow select-none">
       {reportNotFinished ? (
         <div className="text-center text-slate-600 py-3">
-          <i className="fa-solid fa-spinner fa-spin" />
+          <i className="ri-refresh-line" />
         </div>
       ) : (
         <Fragment>
@@ -57,7 +57,7 @@ const Filters = ({ reportNotFinished }: Props) => {
               value={localSearch || ''}
               className="w-full mb-2"
               label="Search Keywords"
-              icon="fa-search"
+              icon="ri-search-line"
               placeholder="Search Keywords"
               onChange={(s) => setLocalSearch(s.toLowerCase())}
             />
@@ -82,7 +82,7 @@ const Filters = ({ reportNotFinished }: Props) => {
             <div className="text-xs text-slate-600 mb-1.5">Use comma for multiple ignored terms.</div>
             <InputWithIcon
               value={localIgnore}
-              icon="fa-eye-slash"
+              icon="ri-eye-line"
               label="Ignored Terms"
               className="w-full mb-3"
               placeholder="Ignored Terms"

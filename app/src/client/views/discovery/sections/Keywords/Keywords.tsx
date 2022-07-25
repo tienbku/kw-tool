@@ -51,9 +51,9 @@ const Keywords = ({ items, compare, reportId, isLoading, setCompare, ewPatterns,
           <div className="border-0 border-b border-slate-200 select-none">
             <div className="pl-2 py-2 flex flex-wrap items-center">
               {hasSelected ? (
-                <span>
+                <span className="flex items-center">
                   <i
-                    className="fa-solid fa-times text-red-500 pl-1 pr-0.5 cursor-pointer"
+                    className="ri-close-line ri-lg text-red-500 pl-1 pr-0.5 cursor-pointer"
                     onClick={() => {
                       setCompare(false);
                       setControl((prev) => ({ ...prev, selected: [] }));

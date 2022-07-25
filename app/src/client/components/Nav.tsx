@@ -23,9 +23,11 @@ const Nav = ({ current }: Props) => {
             <div className="ml-8 space-x-4">
               <a
                 href="/dashboard"
-                className={`text-base font-medium ${current === 'dashboard' ? 'text-yellow-100' : 'text-sky-200'} hover:text-yellow-100`}
+                className={`text-base font-medium ${
+                  current === 'dashboard' ? 'text-yellow-100' : 'text-sky-200'
+                } hover:text-yellow-100 flex items-center`}
               >
-                <i className="fa-solid fa-chart-bullet pr-1" /> Dashboard
+                <i className="ri-dashboard-line pr-2" /> Dashboard
               </a>
             </div>
           </div>

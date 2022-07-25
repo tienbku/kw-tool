@@ -24,8 +24,8 @@ const Ideas = ({ pills }: Props) => {
   return (
     <div className="bg-white rounded shadow mb-3">
       <div className="py-3 px-3 select-none">
-        <div className="text-sky-600">
-          <i className="fa-solid fa-circle-question" />
+        <div className="text-sky-600 flex items-center">
+          <i className="ri-question-line" />
           <span className="text-slate-500 text-xs pl-2">Discover modifiers to use on wildcard search</span>
         </div>
       </div>
@@ -34,7 +34,7 @@ const Ideas = ({ pills }: Props) => {
           <div className="px-2 pb-3">
             <div className="text-center text-gray-600">No ideas found</div>
           </div>
-          )}
+        )}
         {currentItems.map((pill, i) => {
           return (
             <div key={`${pill}-${i}`} className={`border-0 border-t border-slate-200 py-1`}>

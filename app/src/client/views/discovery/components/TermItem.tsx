@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 interface TermItemProps {
   term: string;
@@ -19,12 +19,15 @@ const TermItem = ({ isOther, term, count, parent, open, onClick, onSearch, isCur
       } text-sm`}
     >
       <div className={`flex-grow flex ${isOther ? '' : 'pr-3'}`}>
-        <div className={`flex-grow ${isCurrent ? 'font-semibold' : ''}`}>
+        <div className={`flex-grow flex items-center ${isCurrent ? 'font-semibold' : ''}`}>
           {parent ? (
-            <span className="text-gray-700">
-              <i className={`fa-solid fa-chevron-${open ? 'down' : 'right'} pr-2 hover:text-gray-800 cursor-pointer`} onClick={onClick} />
+            <Fragment>
+              <i
+                className={`ri-arrow-${open ? 'down' : 'right'}-s-line ri-lg text-gray-700 pr-2 hover:text-gray-800 cursor-pointer`}
+                onClick={onClick}
+              />
               {isOther ? 'others' : term}
-            </span>
+            </Fragment>
           ) : (
             <span className="text-gray-600 pl-4">{term.replace(/_/g, ' ')}</span>
           )}
@@ -34,7 +37,7 @@ const TermItem = ({ isOther, term, count, parent, open, onClick, onSearch, isCur
       {!isOther && (
         <div className="flex items-center">
           <div className={`${isCurrent ? 'text-red-500' : 'text-gray-500'} hover:text-sky-600 cursor-pointer`} onClick={onSearch}>
-            <i className="fa-solid fa-search text-sm" />
+            <i className="ri-search-line ri-lg text-sm" />
           </div>
         </div>
       )}

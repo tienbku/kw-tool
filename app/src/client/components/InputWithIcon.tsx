@@ -42,7 +42,7 @@ const InputWithIcon = ({ type, small, step, min, defaultValue, value, className,
         {icon ? (
           <div className="absolute inset-y-0 right-0 flex pr-1">
             <div className="inline-flex items-center text-sm font-sans font-medium text-gray-300">
-              <i className={icon.includes('solid') ? icon : `fa-solid ${icon}`} />
+              <i className={icon} />
             </div>
           </div>
         ) : undefined}

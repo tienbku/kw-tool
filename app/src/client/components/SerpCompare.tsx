@@ -98,7 +98,7 @@ const ComparisonKw = ({
 
         let icon = '';
         if (item.isFeaturedSnippet) {
-          icon = 'fa-solid fa-star text-yellow-500';
+          icon = 'ri-star-fill ri-lg text-yellow-500';
         }
 
         return (
@@ -113,9 +113,11 @@ const ComparisonKw = ({
                 title={url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`${found ? 'text-green-700 hover:text-green-800' : 'text-red-700 hover:text-red-800'} text-sm truncate`}
+                className={`${
+                  found ? 'text-green-700 hover:text-green-800' : 'text-red-700 hover:text-red-800'
+                } text-sm truncate flex items-center`}
               >
-                {icon ? <i className={icon} /> : undefined} {url || <span>&mdash;</span>}
+                {icon ? <i className={`${icon} pr-1`} /> : undefined} {url || <span>&mdash;</span>}
               </a>
             </div>
           </div>

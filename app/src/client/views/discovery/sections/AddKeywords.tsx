@@ -2,7 +2,7 @@ import isURL from 'validator/lib/isURL';
 import Button from '../../../components/Button';
 import React, { Fragment, useEffect, useState } from 'react';
 import InputWithIcon from '../../../components/InputWithIcon';
-import { DISCOVERY_REPORT_COST, MAX_CUSTOM_KEYWORDS } from '../../../../constants';
+import { MAX_CUSTOM_KEYWORDS } from '../../../../constants';
 import { SEARCH_TYPE_CUSTOM, SEARCH_TYPE_QUESTIONS, SEARCH_TYPE_URL, SEARCH_TYPE_WILDCARD } from '../../../../types/IDiscoverySearchType';
 import { uniq } from 'lodash';
 
@@ -71,8 +71,8 @@ const AddKeywords = ({ allPaa, reportSeed, hasRunningTasks, doExpandKeywords }: 
   return (
     <div>
       <div className="bg-white pt-3 px-3 pb-1 rounded shadow select-none">
-        <div className="text-sky-600">
-          <i className="fa-solid fa-circle-question" />
+        <div className="text-sky-600 flex items-center">
+          <i className="ri-question-line " />
           <span className="text-slate-500 text-xs pl-2">Expand your report with more keywords</span>
         </div>
         <div className="py-2">
@@ -135,9 +135,6 @@ const AddKeywords = ({ allPaa, reportSeed, hasRunningTasks, doExpandKeywords }: 
           )}
           <div className="text-xs text-slate-600 mb-1.5">One keyword per line</div>
           {error && <div className="px-3 py-2 rounded bg-red-100 text-red-800 text-sm mt-2">{error}</div>}
-          <div className="px-3 py-2 bg-sky-50 text-sky-700 rounded mt-2">
-            <span className="font-medium">Expanding the report will cost you {DISCOVERY_REPORT_COST} credits</span>
-          </div>
           <Button
             className="mt-2"
             text="Expand Keywords"
@@ -181,8 +178,8 @@ const AddKeywords = ({ allPaa, reportSeed, hasRunningTasks, doExpandKeywords }: 
         </div>
       </div>
       <div className="bg-white pt-3 px-3 pb-1 rounded shadow select-none mt-3">
-        <div className="text-sky-600">
-          <i className="fa-solid fa-circle-question" />
+        <div className="flex items-center text-sky-600">
+          <i className="ri-question-line" />
           <span className="text-slate-500 text-xs pl-2">Add PAA keywords found to report</span>
         </div>
         <div className="py-2">

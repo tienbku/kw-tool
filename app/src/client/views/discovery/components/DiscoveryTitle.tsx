@@ -12,7 +12,7 @@ const DiscoveryTitle = ({ name, loading }: Props) => {
         {name}
         {loading ? (
           <span className="text-orange-700 pl-3">
-            <i className="fa-solid fa-spinner fa-spin fa-xs" />
+            <i className="ri-refresh-line ri-lg" />
           </span>
         ) : undefined}
       </h1>

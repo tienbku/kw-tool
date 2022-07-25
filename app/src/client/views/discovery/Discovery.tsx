@@ -22,7 +22,7 @@ import { REPORT_STATUS_ERROR, REPORT_STATUS_PROCESSING, REPORT_STATUS_QUEUED } f
 const Processing = () => {
   return (
     <div className="bg-slate-500 text-white py-2 px-4 rounded text-sm select-none">
-      <i className="fa-solid fa-spin fa-spinner mr-2 text-orange-300" />
+      <i className="ri-refresh-line mr-2 text-orange-300" />
       We are getting and analyzing your data, please wait.
       <br />
       Depending on the amount of keywords, this might take from a few minutes to half an hour.
@@ -35,7 +35,7 @@ const Processing = () => {
 const Error = () => {
   return (
     <div className="bg-slate-700 text-white py-2 px-4 rounded text-lg select-none">
-      <i className="fa-solid fa-times mr-2 text-red-400" />
+      <i className="ri-close-line mr-2 text-red-400" />
       There was an error generating the report.
     </div>
   );
@@ -181,7 +181,7 @@ const Discovery = () => {
             )}
             {isLoading && (
               <div className="bg-white rounded shadow overflow-hidden text-center py-2">
-                <i className="fa-solid fa-spinner fa-spin" />
+                <i className="ri-refresh-line" />
               </div>
             )}
             {!isLoading && hasReachedLimit && (

@@ -27,8 +27,8 @@ const Verbs = ({ current, verbs, setSearch }: Props) => {
   return (
     <div className="bg-white rounded shadow mb-3 select-none">
       <div className="py-3 px-3 select-none">
-        <div className="text-sky-600">
-          <i className="fa-solid fa-circle-question" />
+        <div className="text-sky-600 flex items-center">
+          <i className="ri-question-line" />
           <span className="text-slate-500 text-xs pl-2">Discover user intent/modifiers using extracted verbs</span>
         </div>
       </div>

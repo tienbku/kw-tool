@@ -19,45 +19,45 @@ const DropdownSections = () => {
   let sectionName: string = section;
   if (section === 'terms') {
     sectionName = 'Modifiers';
-    icon = 'fa-tag';
+    icon = 'ri-price-tag-3-line';
   } else if (section === 'pills') {
     sectionName = 'Ideas';
-    icon = 'fa-lightbulb';
+    icon = 'ri-lightbulb-line';
   } else if (section === 'clusters') {
     sectionName = 'SERP Clusters';
-    icon = 'fa-sitemap';
+    icon = 'ri-mind-map';
   } else if (section === 'semantic-clusters') {
     sectionName = 'Semantic Clusters';
-    icon = 'fa-signal-bars-good';
+    icon = 'ri-mind-map';
   } else if (section === 'domains') {
-    icon = 'fa-globe';
+    icon = 'ri-global-line';
   } else if (section === 'verbs') {
-    icon = 'fa-bolt';
+    icon = 'ri-sword-line';
   } else if (section === 'intent') {
-    icon = 'fa-bolt';
+    icon = 'ri-map-pin-user-fill';
   } else if (section === 'groups') {
-    icon = 'fa-layer-group';
+    icon = 'ri-stack-line';
   } else if (section === 'value') {
     sectionName = 'Keywords $ Value';
-    icon = 'fa-dollar';
+    icon = 'ri-money-dollar-box-line';
   } else if (section === 'filters') {
     sectionName = 'Filters & Search';
-    icon = 'fa-filter';
+    icon = 'ri-filter-line';
   } else if (section === 'ew-patterns') {
     sectionName = 'Custom EasyWins Patterns';
-    icon = 'fa-magic';
+    icon = 'ri-flask-line';
   } else if (section === 'competitors') {
-    icon = 'fa-chart-bar';
+    icon = 'ri-computer-line';
   } else if (section === 'ranking') {
     sectionName = 'Ranking Check';
-    icon = 'fa-chart-line-up';
+    icon = 'ri-line-chart-line';
   } else if (section === 'help') {
-    icon = 'fa-book';
+    icon = 'ri-book-line';
   } else if (section === 'add-keywords') {
     sectionName = 'Add Keywords';
-    icon = 'fa-plus';
+    icon = 'ri-add-line';
   } else if (section === 'recipes') {
-    icon = 'fa-utensils';
+    icon = 'ri-cake-line';
   }
 
   return (
@@ -65,13 +65,9 @@ const DropdownSections = () => {
       <Menu as="div" className="relative inline-block text-left z-20 w-full">
         <div>
           <Menu.Button className="flex items-center justify-left w-full rounded-md border border-sky-700 shadow-sm px-4 py-2 bg-sky-700 text-sm font-medium text-white hover:bg-sky-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500">
-            <div className="flex-grow text-left capitalize">
-              <i className={`text-sky-100 fa-solid ${icon} fa-lg mr-3`} />
-              {sectionName}
-            </div>
-            <div>
-              <i className="fa-solid fa-chevron-down" />
-            </div>
+            <i className={`text-sky-100 ${icon} ri-lg mr-3`} />
+            <span className="flex-grow text-left capitalize ">{sectionName}</span>
+            <i className="ri-arrow-down-s-line ri-lg" />
           </Menu.Button>
         </div>
         <Transition
@@ -93,7 +89,7 @@ const DropdownSections = () => {
                   )}
                   onClick={() => setSection('terms')}
                 >
-                  <i className="fa-solid fa-tag text-slate-400 pr-2" />
+                  <i className="ri-price-tag-3-line ri-lg text-slate-400 pr-2" />
                   Modifiers
                 </div>
               </Menu.Item>
@@ -105,7 +101,7 @@ const DropdownSections = () => {
                   )}
                   onClick={() => setSection('filters')}
                 >
-                  <i className="fa-solid fa-filter text-slate-400 pr-2" />
+                  <i className="ri-filter-line ri-lg text-slate-400 pr-2" />
                   Filters & Search
                 </div>
               </Menu.Item>
@@ -117,7 +113,7 @@ const DropdownSections = () => {
                   )}
                   onClick={() => setSection('groups')}
                 >
-                  <i className="fa-solid fa-layer-group text-slate-400 pr-2" />
+                  <i className="ri-stack-line ri-lg text-slate-400 pr-2" />
                   Groups
                 </div>
               </Menu.Item>
@@ -129,7 +125,7 @@ const DropdownSections = () => {
                   )}
                   onClick={() => setSection('ranking')}
                 >
-                  <i className="fa-solid fa-chart-line-up text-slate-400 pr-2" />
+                  <i className="ri-line-chart-line ri-lg text-slate-400 pr-2" />
                   Ranking Check
                 </div>
               </Menu.Item>
@@ -141,7 +137,7 @@ const DropdownSections = () => {
                   )}
                   onClick={() => setSection('clusters')}
                 >
-                  <i className="fa-solid fa-sitemap text-slate-400 pr-2" />
+                  <i className="ri-mind-map ri-lg text-slate-400 pr-2" />
                   SERP Clusters
                 </div>
               </Menu.Item>
@@ -153,7 +149,7 @@ const DropdownSections = () => {
                   )}
                   onClick={() => setSection('semantic-clusters')}
                 >
-                  <i className="fa-solid fa-signal-bars-good text-slate-400 pr-2" />
+                  <i className="ri-mind-map ri-lg text-slate-400 pr-2" />
                   Semantic Clusters
                 </div>
               </Menu.Item>
@@ -165,7 +161,7 @@ const DropdownSections = () => {
                   )}
                   onClick={() => setSection('domains')}
                 >
-                  <i className="fa-solid fa-globe text-slate-400 pr-2" />
+                  <i className="ri-globe-line ri-lg text-slate-400 pr-2" />
                   Domains
                 </div>
               </Menu.Item>
@@ -177,7 +173,7 @@ const DropdownSections = () => {
                   )}
                   onClick={() => setSection('competitors')}
                 >
-                  <i className="fa-solid fa-chart-bar text-slate-400 pr-2" />
+                  <i className="ri-computer-line ri-lg text-slate-400 pr-2" />
                   Competitors
                 </div>
               </Menu.Item>
@@ -189,7 +185,7 @@ const DropdownSections = () => {
                   )}
                   onClick={() => setSection('ew-patterns')}
                 >
-                  <i className="fa-solid fa-magic text-slate-400 pr-2" />
+                  <i className="ri-flask-line ri-lg text-slate-400 pr-2" />
                   Custom EasyWins Patterns
                 </div>
               </Menu.Item>
@@ -201,7 +197,7 @@ const DropdownSections = () => {
                   )}
                   onClick={() => setSection('pills')}
                 >
-                  <i className="fa-solid fa-lightbulb text-slate-400 pr-2" />
+                  <i className="ri-lightbulb-line ri-lg text-slate-400 pr-2" />
                   Ideas
                 </div>
               </Menu.Item>
@@ -213,7 +209,7 @@ const DropdownSections = () => {
                   )}
                   onClick={() => setSection('verbs')}
                 >
-                  <i className="fa-solid fa-bolt text-slate-400 pr-2" />
+                  <i className="ri-sword-line ri-lg text-slate-400 pr-2" />
                   Verbs
                 </div>
               </Menu.Item>
@@ -225,7 +221,7 @@ const DropdownSections = () => {
                   )}
                   onClick={() => setSection('intent')}
                 >
-                  <i className="fa-solid fa-bolt text-slate-400 pr-2" />
+                  <i className="ri-map-pin-user-fill ri-lg text-slate-400 pr-2" />
                   Intent
                 </div>
               </Menu.Item>
@@ -237,7 +233,7 @@ const DropdownSections = () => {
                   )}
                   onClick={() => setSection('value')}
                 >
-                  <i className="fa-solid fa-dollar text-slate-400 pr-2" />
+                  <i className="ri-money-dollar-box-line ri-lg text-slate-400 pr-2" />
                   Keywords $ Value
                 </div>
               </Menu.Item>
@@ -249,7 +245,7 @@ const DropdownSections = () => {
                   )}
                   onClick={() => setSection('add-keywords')}
                 >
-                  <i className="fa-solid fa-plus text-slate-400 pr-2" />
+                  <i className="ri-add-line ri-lg text-slate-400 pr-2" />
                   Add Keywords
                 </div>
               </Menu.Item>
@@ -261,7 +257,7 @@ const DropdownSections = () => {
                   )}
                   onClick={() => setSection('recipes')}
                 >
-                  <i className="fa-solid fa-utensils text-slate-400 pr-2" />
+                  <i className="ri-cake-line ri-lg text-slate-400 pr-2" />
                   Recipes
                 </div>
               </Menu.Item>
@@ -273,7 +269,7 @@ const DropdownSections = () => {
                   )}
                   onClick={() => setSection('help')}
                 >
-                  <i className="fa-solid fa-book text-slate-400 pr-2" />
+                  <i className="ri-book-line ri-lg text-slate-400 pr-2" />
                   Help
                 </div>
               </Menu.Item>

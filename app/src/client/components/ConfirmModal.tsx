@@ -57,12 +57,12 @@ const ConfirmModal = ({ okDisabled, confirmButtonColor, onConfirm, title, labelC
                     onClick={setClose}
                   >
                     <span className="sr-only">Close</span>
-                    <i className="fa-solid fa-times fa-xl text-slate-600" />
+                    <i className="ri-close-line ri-lg text-slate-600" />
                   </div>
                 </div>
                 <div className="sm:flex sm:items-start">
-                  <div className="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-sky-100 sm:mx-0 sm:h-10 sm:w-10">
-                    <i className="fa-solid fa-info fa-xl" />
+                  <div className="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+                    <i className="ri-alarm-warning-line ri-lg text-red-500" />
                   </div>
                   <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                     <Dialog.Title as="h3" className="text-lg leading-6 font-medium text-gray-900 select-none">

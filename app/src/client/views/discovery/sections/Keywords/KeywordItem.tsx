@@ -75,7 +75,7 @@ const KeywordItem = ({
   }
 
   return (
-    <div className={`border-0 border-b border-slate-200 py-2 ${selected ? 'bg-yellow-50' : ''}`}>
+    <div className={`border-0 border-b border-slate-200 py-2 ${selected ? 'bg-slate-50' : ''}`}>
       <div className="flex w-full">
         <div className={`flex items-center select-none pl-2`}>
           <input
@@ -89,9 +89,9 @@ const KeywordItem = ({
               <div className="flex justify-center cursor-pointer font-semibold text-sm">
                 <div
                   onClick={onShowExtra}
-                  className="px-1 bg-sky-100 hover:bg-lime-100 hover:text-lime-800 text-sky-800 rounded select-none"
+                  className="px-1 bg-sky-100 hover:bg-lime-100 hover:text-lime-800 text-sky-800 rounded select-none flex items-center"
                 >
-                  <i className="fa-solid fa-eye" />
+                  <i className="ri-eye-line" />
                 </div>
               </div>
             ) : (

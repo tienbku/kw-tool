@@ -107,8 +107,8 @@ const KeywordContent = ({ competitors, setRanking, ranking, ewPatterns, search, 
             small
             className="mb-2"
             label="Search URLs"
+            icon="ri-search-line"
             placeholder="Search URLs"
-            icon="fa-solid fa-search"
             onChange={(e) => setSearchUrls(e)}
           />
           {keyword.urlsAll

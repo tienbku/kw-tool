@@ -79,8 +79,8 @@ const Terms = ({ isLoading, items, terms }: Props) => {
   return (
     <div className="bg-white rounded shadow mb-3 select-none">
       <div className="pt-3 pb-2 px-3">
-        <div className="text-sky-600">
-          <i className="fa-solid fa-circle-question" />
+        <div className="text-sky-600 flex items-center">
+          <i className="ri-circle-line" />
           <span className="text-slate-500 text-xs pl-2">Discover modifiers, then use them to expand your list.</span>
         </div>
       </div>
@@ -112,8 +112,8 @@ const Terms = ({ isLoading, items, terms }: Props) => {
       <ul>
         {!terms || (terms.length === 0 && <li className="text-center text-gray-600 pb-2">No modifiers yet</li>)}
         {isLoading && (
-          <li className="text-center text-gray-600 pb-2">
-            <i className="fa-solid fa-spinner fa-spin" />
+          <li className="text-center text-gray-600 pb-2 flex items-center">
+            <i className="ri-refresh-line" />
           </li>
         )}
         {!isLoading &&

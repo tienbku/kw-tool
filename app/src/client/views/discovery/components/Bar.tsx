@@ -43,9 +43,10 @@ const Bar = ({
     <div className="flex flex-wrap items-center mb-3 mt-3 xl:mt-0 bg-white rounded shadow py-1.5 px-1.5 w-full">
       <Button
         smaller
+        disabled
         text="Help"
-        icon="fa-solid fa-book"
-        className="mr-2 mb-2 3xl:mb-0"
+        icon="ri-question-line ri-lg"
+        className="mr-2 mb-2 2xl:mb-0"
         color="bg-blue-600 text-white hover:bg-blue-700 hover:text-white"
         onClick={() => {
           setControl((prev) => ({ ...prev, sidebarSection: 'help' }));
@@ -54,8 +55,8 @@ const Bar = ({
       <Button
         smaller
         text="Add Keywords"
-        icon="fa-solid fa-plus"
-        className="mr-2 mb-2 3xl:mb-0"
+        icon="ri-add-line ri-lg"
+        className="mr-2 mb-2 2xl:mb-0"
         color="bg-blue-600 text-white hover:bg-blue-700 hover:text-white"
         onClick={() => {
           setControl((prev) => ({ ...prev, sidebarSection: 'add-keywords' }));
@@ -64,8 +65,8 @@ const Bar = ({
       <Button
         smaller
         text="Get All Serp Data"
-        icon="fa-solid fa-database"
-        className="mr-2 mb-2 3xl:mb-0"
+        icon="ri-database-2-line ri-lg"
+        className="mr-2 mb-2 2xl:mb-0"
         color="bg-lime-600 text-white hover:bg-lime-700"
         disabled={isLoading || hasRunningTasks || compare || hasReachedLimit || items.length === 0}
         onClick={() => {
@@ -74,8 +75,8 @@ const Bar = ({
       />
       <Button
         smaller
-        icon="fa-solid fa-database"
-        className="mr-2 mb-2 3xl:mb-0"
+        icon="ri-database-2-line ri-lg"
+        className="mr-2 mb-2 2xl:mb-0"
         text="Get Selected SERP Data"
         color="text-white bg-teal-600 hover:bg-teal-700"
         disabled={isLoading || hasRunningTasks || !hasSelected || compare || hasReachedLimit}
@@ -86,8 +87,8 @@ const Bar = ({
       <Button
         smaller
         text="Compare SERPs"
-        icon="fa-solid fa-not-equal"
-        className="mr-2 mb-2 3xl:mb-0"
+        icon="ri-slice-line ri-lg"
+        className="mr-2 mb-2 2xl:mb-0"
         onClick={() => setCompare(!compare)}
         color="text-white bg-purple-600 hover:bg-purple-700"
         disabled={isLoading || hasRunningTasks || !canCompare || !hasSelected || control.selected.length !== 2}
@@ -95,8 +96,8 @@ const Bar = ({
       <Button
         smaller
         text="Copy"
-        icon="fa-solid fa-copy"
-        className="mr-2 mb-2 3xl:mb-0"
+        icon="ri-clipboard-line ri-lg"
+        className="mr-2 mb-2 2xl:mb-0"
         color="text-white bg-gray-500 hover:bg-gray-600"
         onClick={() => copyText(control.selected.join('\n'))}
         disabled={isLoading || !hasSelected || compare}
@@ -104,8 +105,8 @@ const Bar = ({
       <Button
         smaller
         text="Remove Selected"
-        icon="fa-solid fa-trash-can"
-        className="mr-2 mb-2 3xl:mb-0"
+        icon="ri-delete-bin-6-line ri-lg"
+        className="mr-2 mb-2 2xl:mb-0"
         color="text-white bg-red-600 hover:bg-red-600"
         disabled={isLoading || hasRunningTasks || !hasSelected || compare}
         onClick={() => {
@@ -115,8 +116,8 @@ const Bar = ({
       <Button
         smaller
         text="Download"
-        icon="fa-solid fa-download"
-        className="mr-2"
+        icon="ri-download-line ri-lg"
+        className="mr-2 mb-2 2xl:mb-0"
         disabled={isLoading || hasRunningTasks || compare || items.length === 0}
         color="bg-blue-600 text-white hover:bg-blue-700"
         onClick={() => download(false)}
@@ -125,8 +126,8 @@ const Bar = ({
         <Button
           smaller
           text="Download Filtered"
-          icon="fa-solid fa-download"
-          className="mr-2"
+          icon="ri-download-line ri-lg"
+          className="mr-2 mb-2 2xl:mb-0"
           disabled={isLoading || hasRunningTasks || compare}
           color="bg-blue-600 text-white hover:bg-blue-700"
           onClick={() => download(true)}

@@ -31,13 +31,9 @@ const DropdownShow = ({ filters, setFilters }: Props) => {
       <Menu as="div" className="relative inline-block text-left z-20 w-full">
         <div>
           <Menu.Button className="flex items-center justify-left w-full rounded-md border border-slate-200 shadow-sm px-4 pb-1 pt-1.5 bg-sky-700 text-white hover:bg-sky-800 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-sky-500">
-            <div className="flex-grow text-left capitalize">
-              <i className={`text-white fa-solid fa-eye fa-lg mr-3`} />
-              Show Keyword Data
-            </div>
-            <div>
-              <i className="fa-solid fa-chevron-down" />
-            </div>
+            <i className={`text-white ri-eye-line ri-lg mr-3`} />
+            <div className="flex-grow text-left capitalize">Show Keyword Data</div>
+            <i className="ri-arrow-down-s-line ri-lg" />
           </Menu.Button>
         </div>
         <Transition

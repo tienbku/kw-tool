@@ -37,8 +37,8 @@ const Groups = ({ doAddGroup, isLoading, doRemoveGroup, groups, doUpdateGroupKey
       />
       <div className="py-3 px-3">
         <div className="flex items-center">
-          <div className="text-sky-600">
-            <i className="fa-solid fa-circle-question" />
+          <div className="flex items-center text-sky-600">
+            <i className="ri-question-line" />
             <span className="text-slate-500 text-xs pl-2">Group your keywords however you like.</span>
           </div>
         </div>
@@ -61,7 +61,7 @@ const Groups = ({ doAddGroup, isLoading, doRemoveGroup, groups, doUpdateGroupKey
       <ul className="mb-0">
         {isLoading && (
           <li className="text-center text-gray-600 py-3">
-            <i className="fa-solid fa-spinner fa-spin" />
+            <i className="ri-refresh-line" />
           </li>
         )}
         {!isLoading && groups.length === 0 && <li className="text-gray-500 pl-4 pb-3">No groups created yet...</li>}
@@ -115,34 +115,34 @@ const GroupItem = ({ onRemove, isCurrent, group, setSelectedGroup, doUpdateGroup
         {hasSelected ? (
           <Fragment>
             <div
-              className={`text-green-500 hover:text-sky-600 cursor-pointer`}
+              className={`text-green-500 hover:text-sky-600 cursor-pointer flex items-center`}
               onClick={() => {
                 doUpdateGroupKeywords(group.name, 'add');
               }}
             >
-              <i className="fa-solid fa-plus text-sm mr-2" />
+              <i className="ri-add-line ri-lg text-sm mr-2" />
             </div>
             <div
-              className={`text-red-500 hover:text-sky-600 cursor-pointer`}
+              className={`text-red-500 hover:text-sky-600 cursor-pointer flex items-center`}
               onClick={() => {
                 doUpdateGroupKeywords(group.name, 'remove');
               }}
             >
-              <i className="fa-solid fa-times text-sm mr-2" />
+              <i className="ri-close-line ri-lg text-sm mr-2" />
             </div>
           </Fragment>
         ) : undefined}
         {isCurrent ? (
           <div className={`text-red-500 hover:text-red-600 cursor-pointer`} onClick={() => setSelectedGroup('')}>
-            <i className="fa-solid fa-search text-sm mr-2" />
+            <i className="ri-search-line text-sm mr-2" />
           </div>
         ) : (
           <div className={`text-gray-500 hover:text-sky-600 cursor-pointer`} onClick={() => setSelectedGroup(group.name)}>
-            <i className="fa-solid fa-search text-sm mr-2" />
+            <i className="ri-search-line text-sm mr-2" />
           </div>
         )}
         <div className={`text-gray-500 hover:text-red-600 cursor-pointer`}>
-          <i className="fa-solid fa-trash-alt text-sm" onClick={() => onRemove()} />
+          <i className="ri-delete-bin-line text-sm" onClick={() => onRemove()} />
         </div>
       </div>
     </li>

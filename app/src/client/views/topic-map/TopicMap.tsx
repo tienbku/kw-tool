@@ -20,17 +20,13 @@ declare const window: customWindow;
 const TopicMap = () => {
   const reportId = useMemo(() => window.__reportId, []);
 
-  const user = trpc.useQuery(['users:me']);
-  const authenticated = user.data?.authenticated;
-  const credits = user.data?.credits || 0;
-
   const doGetBase = trpc.useQuery(['discovery:base', { reportId }], {
     refetchOnWindowFocus: false,
   });
 
   const doGetTopicMap = trpc.useQuery(['discovery:get-topic-map', { reportId }], {
     refetchOnWindowFocus: false,
-    enabled: authenticated === true && doGetBase.data !== undefined,
+    enabled: doGetBase.data !== undefined,
   });
   const base = useMemo(() => doGetBase.data?.report, [doGetBase.data?.report]);
   const topicMap = useMemo(() => doGetTopicMap.data, [doGetTopicMap.data]);
@@ -54,10 +50,10 @@ const TopicMap = () => {
   if (!base || doGetBase.isLoading || !topicMap || doGetTopicMap.isLoading) {
     return (
       <div>
-        <Nav authenticated={authenticated || false} credits={credits || undefined} />
+        <Nav />
         <div className="container mx-auto mt-5">
-          <div className="px-3 py-2 rounded bg-slate-700 text-white">
-            <i className="fa-solid fa-spinner fa-spin" />
+          <div className="px-3 py-2 rounded bg-slate-700 text-white flex items-center">
+            <i className="ri-refresh-line" />
             <span className="ml-2">Loading...</span>
           </div>
         </div>
@@ -68,14 +64,14 @@ const TopicMap = () => {
   if (topicMap.status === REPORT_STATUS_QUEUED || topicMap.status === REPORT_STATUS_PROCESSING) {
     return (
       <div>
-        <Nav authenticated={authenticated || false} credits={credits || undefined} />
+        <Nav />
         <div className="container mx-auto mt-5">
-          <a className="block text-base font-medium text-sky-700 hover:text-sky-800 hover:underline mb-2" href={`/discovery/${reportId}`}>
-            <i className="fa-solid fa-arrow-left pr-2" />
+          <a className="block text-base font-medium text-sky-700 hover:text-sky-800 mb-2 flex items-center" href={`/discovery/${reportId}`}>
+            <i className="ri-arrow-left-line pr-2" />
             Go back to report
           </a>
-          <div className="px-3 py-2 rounded bg-slate-700 text-white">
-            <i className="fa-solid fa-spinner fa-spin" />
+          <div className="px-3 py-2 rounded bg-slate-700 text-white flex items-center">
+            <i className="ri-refresh-line" />
             <span className="ml-2">Your Topic Map is being created, please wait for a few minutes.</span>
           </div>
         </div>
@@ -83,15 +79,12 @@ const TopicMap = () => {
     );
   }
 
-  console.log(map.map((item: ITopicMapItem) => item.name));
-  console.log(sum(categories?.map((category) => category.keywords.length)));
-
   return (
     <div>
-      <Nav authenticated={authenticated || false} credits={credits || undefined} />
+      <Nav />
       <div className="container mx-auto px-3 mt-5">
-        <a className="block text-base font-medium text-sky-700 hover:text-sky-800 hover:underline mb-2" href={`/discovery/${reportId}`}>
-          <i className="fa-solid fa-arrow-left pr-2" />
+        <a className="block text-base font-medium text-sky-700 hover:text-sky-800 mb-2 flex items-center" href={`/discovery/${reportId}`}>
+          <i className="ri-arrow-left-line pr-2" />
           Go back to report
         </a>
         <div className="pb-10">
@@ -99,28 +92,6 @@ const TopicMap = () => {
             {base.name} <span className="text-xl text-slate-600 font-normal capitalize">Topic Map</span>
           </div>
           <div className="flex flex-wrap justify-center mt-3">
-            {/*
-            <div className="w-3/12">
-              <div className="rounded bg-white">
-                <div className="p-3 border-b border-slate-200">
-                  <Button text="Download" icon="fa-solid fa-download" onClick={() => console.log('download')} />
-                </div>
-                <div className="p-3">
-                  <div className="text-base font-medium text-slate-600 mb-1">Domain</div>
-                  <InputWithIcon label="Domain" placeholder="Domain" onChange={(s) => setDomain(s)} className="mb-2" />
-                  <div className="text-base font-medium text-slate-600 mb-1">Competitors</div>
-                  <textarea
-                    rows={5}
-                    value={competitors}
-                    placeholder="Competitors"
-                    onChange={(e) => setCompetitors(e.target.value.split('\n'))}
-                    className={`w-full shadow-sm focus:ring-sky-500 focus:border-sky-500 sm:text-sm border border-gray-300 rounded-md`}
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="w-9/12">
-            */}
             <div className="w-full lg:w-8/12">
               <div className="rounded bg-white">
                 {categories?.map((category, index) => {
@@ -178,7 +149,7 @@ const Topic = ({ topic, items }: { topic: IDiscoveryTopicMapItemOutput; items: I
     <div className="border-b border-slate-200">
       <div className={`flex items-center py-2 px-3 ${open ? 'bg-yellow-50' : ''}`}>
         <div className="cursor-pointer text-slate-700" onClick={() => setOpen((prev) => !prev)}>
-          <i className={`fa-solid fa-caret-${open ? 'down' : 'right'} fa-md`} />
+          <i className={`ri-arrow-${open ? 'down' : 'right'}-s-line ri-lg`} />
         </div>
         <div className="pl-3 flex-grow">
           <div className="text-base text-slate-700 capitalize">
@@ -236,8 +207,8 @@ const Cluster = ({
   return (
     <div className="py-1 border-t border-slate-200">
       <div className="flex items-center pl-6 pr-3">
-        <div className="cursor-pointer text-slate-400" onClick={() => setOpen((prev) => !prev)}>
-          <i className={`fa-solid fa-caret-${open ? 'down' : 'right'}`} />
+        <div className="cursor-pointer text-slate-500" onClick={() => setOpen((prev) => !prev)}>
+          <i className={`ri-arrow-${open ? 'down' : 'right'}-s-line`} />
         </div>
         <div className="text-base text-slate-700 pl-3 flex-grow">
           {keyword} <span className="text-xs text-purple-500 pl-2">{count}</span>

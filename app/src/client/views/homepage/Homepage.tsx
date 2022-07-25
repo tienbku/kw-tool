@@ -53,32 +53,32 @@ import rankingTop100 from '../../../assets/screenshots/ranking-top-100.png';
 const features: FeatureProps[] = [
   {
     name: 'Find long-tail keywords & topics',
-    icon: 'fa-solid fa-check',
+    icon: 'ri-check-line',
     description: 'With our keyword research tools you will always find new keywords and topics to write content',
   },
   {
     name: 'Low-hanging fruits',
-    icon: 'fa-solid fa-check',
+    icon: 'ri-check-line',
     description: 'Find where there is low competition and start from there, then move on to the next step',
   },
   {
     name: 'Analyze the SERP',
-    icon: 'fa-solid fa-check',
+    icon: 'ri-check-line',
     description: 'Compare keywords before you take action, not all similar keywords have the same intent',
   },
   {
     name: 'Keyword Clustering',
-    icon: 'fa-solid fa-check',
+    icon: 'ri-check-line',
     description: 'We create clusters for your keywords based on the SERP, save time doing the manual work',
   },
   {
     name: 'Content Analysis',
-    icon: 'fa-solid fa-check',
+    icon: 'ri-check-line',
     description: 'We are working on new tools to help you with Entity SEO and content optimization',
   },
   {
     name: 'Intent & Modifier ideas',
-    icon: 'fa-solid fa-check',
+    icon: 'ri-check-line',
     description: 'Discover new modifiers/topics for your keywords and different intents',
   },
 ];
@@ -185,7 +185,7 @@ const Feature = ({ name, description, icon }: FeatureProps) => {
     <div className="relative">
       <dt>
         <div className="absolute h-6 w-6 flex items-center">
-          <i className={`text-lime-500 ${icon} fa-xl`} aria-hidden="true" />
+          <i className={`text-lime-500 ${icon} ri-lg`} aria-hidden="true" />
         </div>
         <p className="ml-9 text-lg leading-6 font-medium text-gray-900">{name}</p>
       </dt>

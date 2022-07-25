@@ -45,8 +45,8 @@ const SectionSimpleFilter = ({ items, current, setCurrent, label, labelExtra }: 
   return (
     <div className="bg-white rounded shadow mb-3 select-none">
       <div className="pt-3 px-3">
-        <div className="text-sky-600">
-          <i className="fa-solid fa-circle-question" />
+        <div className="text-sky-600 flex items-center">
+          <i className="ri-question-line" />
           <span className="text-slate-500 text-xs pl-2">
             Find keywords by {label} {labelExtra}. Total of {items.map((c) => c.count).reduce((a, b) => a + b, 0)}
           </span>

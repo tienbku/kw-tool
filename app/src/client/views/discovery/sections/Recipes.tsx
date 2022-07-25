@@ -1,7 +1,6 @@
 import React, { useCallback } from 'react';
 import Button from '../../../components/Button';
 import { trpc } from '../../../utils';
-import { DISCOVERY_TOPIC_MAP_COST } from '../../../../constants';
 
 interface Props {
   reportId?: string;
@@ -35,8 +34,8 @@ const Recipes = ({ hasTopicMap, reportId, itemsCount, semanticClustersCount }: P
 
   return (
     <div className="bg-white pt-3 pb-1 rounded shadow select-none">
-      <div className="text-sky-600 pl-3">
-        <i className="fa-solid fa-circle-question" />
+      <div className="text-sky-600 pl-3 flex items-center">
+        <i className="ri-question-line" />
         <span className="text-slate-500 text-xs pl-2">Recipes to save you some time</span>
       </div>
       <div className="block border-t border-slate-200 mt-2 pt-1">
@@ -47,14 +46,14 @@ const Recipes = ({ hasTopicMap, reportId, itemsCount, semanticClustersCount }: P
             <ul className="pl-2">
               {hasEnoughKeywords ? (
                 <li className="text-lime-700 text-base">
-                  <i className="fa-solid fa-check pr-1" /> Enough keywords with data
+                  <i className="ri-check-line pr-1" /> Enough keywords with data
                   <span className="text-sm pl-2">
                     {itemsCount}/{MIN_ITEMS}
                   </span>
                 </li>
               ) : (
                 <li className="text-red-700 text-base">
-                  <i className="fa-solid fa-times pr-1" /> Enough keywords with data
+                  <i className="ri-check-line pr-1" /> Enough keywords with data
                   <span className="text-sm pl-2">
                     {itemsCount}/{MIN_ITEMS}
                   </span>
@@ -62,14 +61,14 @@ const Recipes = ({ hasTopicMap, reportId, itemsCount, semanticClustersCount }: P
               )}
               {hasEnoughSemanticClusters ? (
                 <li className="text-lime-700 text-base">
-                  <i className="fa-solid fa-check pr-1" /> Enough semantic clusters
+                  <i className="ri-check-line pr-1" /> Enough semantic clusters
                   <span className="text-sm pl-2">
                     {semanticClustersCount}/{MIN_SEMANTIC_CLUSTERS}
                   </span>
                 </li>
               ) : (
                 <li className="text-red-700 text-base">
-                  <i className="fa-solid fa-times pr-1" /> Enough semantic clusters
+                  <i className="ri-close-line pr-1" /> Enough semantic clusters
                   <span className="text-sm pl-2">
                     {semanticClustersCount}/{MIN_SEMANTIC_CLUSTERS}
                   </span>
@@ -78,12 +77,9 @@ const Recipes = ({ hasTopicMap, reportId, itemsCount, semanticClustersCount }: P
             </ul>
           </div>
           <div className="mt-1">
-            {hasTopicMap && (
-              <div className="mb-2 text-red-600 font-medium">Re-generating will cost you {DISCOVERY_TOPIC_MAP_COST} credits</div>
-            )}
             <Button
               small
-              icon="fa-solid fa-robot"
+              icon="ri-robot-line"
               className="mr-2"
               color="bg-lime-700 hover:bg-lime-600 text-white"
               text={`${hasTopicMap ? 'Re-Generate' : 'Generate'} Topic Map`}
@@ -99,7 +95,7 @@ const Recipes = ({ hasTopicMap, reportId, itemsCount, semanticClustersCount }: P
                 small
                 className="mt-2 3xl:mt-0"
                 text="View Topic-Map"
-                icon="fa-solid fa-eye"
+                icon="ri-eye-line"
                 color="text-white bg-blue-700 hover:bg-blue-600"
                 disabled={!reportId || !hasTopicMap}
                 onClick={() => {

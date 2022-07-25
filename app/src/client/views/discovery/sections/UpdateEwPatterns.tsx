@@ -38,8 +38,8 @@ const UpdateEwPatterns = ({ hasRunningTasks, ewPatterns, ewDefaults, doUpdateEwP
   return (
     <div className="bg-white rounded shadow mb-3 select-none">
       <div className="pt-3 px-3">
-        <div className="text-sky-600">
-          <i className="fa-solid fa-circle-question" />
+        <div className="text-sky-600 flex items-center">
+          <i className="ri-question-line" />
           <span className="text-slate-500 text-xs pl-2">Update your EasyWin patterns, matched in URLs</span>
         </div>
       </div>

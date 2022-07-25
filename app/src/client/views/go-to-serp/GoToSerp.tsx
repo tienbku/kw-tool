@@ -195,7 +195,7 @@ const GoToSerp = () => {
                             setUrls((prev) => prev.filter((u) => u !== url));
                           }}
                         >
-                          <i className="fa-solid fa-trash-can" />
+                          <i className="ri-delete-bin-line" />
                         </div>
                       </div>
                     </div>

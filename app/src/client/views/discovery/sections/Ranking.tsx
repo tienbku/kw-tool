@@ -10,8 +10,8 @@ const Ranking = () => {
 
   return (
     <div className="bg-white pt-3 px-3 pb-1 rounded shadow select-none">
-      <div className="text-sky-600">
-        <i className="fa-solid fa-circle-question" />
+      <div className="text-sky-600 flex items-center">
+        <i className="ri-question-line" />
         <span className="text-slate-500 text-xs pl-2">Quickly check your rankings</span>
       </div>
       <div className="py-2">

@@ -39,13 +39,9 @@ const DropdownSort = ({ sort, setSort }: Props) => {
       <Menu as="div" className="relative inline-block text-left z-10 w-full">
         <div>
           <Menu.Button className="flex items-center justify-left w-full rounded-md border border-slate-200 shadow-sm px-4 pb-1 pt-1.5 bg-white text-sm font-medium text-slate-600 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500">
-            <div className="flex-grow text-left">
-              <i className={`text-slate-400 fa-solid fa-arrow-down-wide-short fa-lg mr-3`} />
-              Sort {label}
-            </div>
-            <div>
-              <i className="fa-solid fa-chevron-down" />
-            </div>
+            <i className={`text-slate-400 ri-sort-desc ri-lg mr-3`} />
+            <div className="flex-grow text-left">Sort {label}</div>
+            <i className="ri-arrow-down-s-line ri-lg" />
           </Menu.Button>
         </div>
         <Transition

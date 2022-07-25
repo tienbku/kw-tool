@@ -54,21 +54,21 @@ const Serp = ({
                 title="Check rankings for this URL"
                 className={`px-2 py-1 mr-2 ${
                   ranking === cleanUrl ? 'bg-blue-700 text-white' : 'bg-blue-100 text-blue-400'
-                } rounded cursor-pointer`}
+                } rounded cursor-pointer flex items-center`}
                 onClick={() => {
                   if (cleanUrl) {
                     setRanking(cleanUrl);
                   }
                 }}
               >
-                <i className="fa-solid fa-search" />
+                <i className="ri-search-line" />
               </div>
             </div>
             <div className="flex-grow py-2">
               <div className={`text-sm ${isCompetitor ? 'text-red-700 underline font-medium' : 'text-gray-700'} flex items-center`}>
                 {pos.type === FEATURED_SNIPPET ? (
-                  <span className="text-xs text-yellow-400 mr-1">
-                    <i className="fa-solid fa-star fa-lg" />
+                  <span className="text-xs text-yellow-500 mr-1 flex items-center">
+                    <i className="ri-star-fill ri-lg" />
                   </span>
                 ) : undefined}
                 {pos.type === ORGANIC && <span className="font-semibold select-none mr-1">{pos.position}.</span>}{' '}

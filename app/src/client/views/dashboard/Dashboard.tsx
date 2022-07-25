@@ -47,7 +47,7 @@ const Dashboard = () => {
         <div className="mb-4">
           <div className="flex flex-wrap">
             <Button
-              icon="fa-solid fa-plus"
+              icon="ri-add-line ri-lg"
               text="New Keyword Discovery"
               color="text-white bg-green-600 hover:bg-green-700"
               onClick={() => setShowNewDiscoveryForm(true)}
@@ -66,17 +66,6 @@ const Dashboard = () => {
             <div className="bg-white shadow overflow-hidden sm:rounded-md select-none">
               <div className="flex flex-wrap items-center px-3 py-2">
                 <div className="text-lg text-slate-700">Keyword Discovery Reports</div>
-                <div>
-                  <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href="https://youtu.be/dodK9FHRnrg"
-                    className="px-2 py-1 flex items-center rounded text-xs font-medium bg-sky-100 text-sky-700 hover:bg-sky-200 hover:text-sky-800 ml-3 uppercase"
-                  >
-                    <i className="fa-solid fa-book mr-1" />
-                    How to create a report
-                  </a>
-                </div>
               </div>
               {discoveryReports.data?.length === 0 && (
                 <div className="m-3 bg-slate-500 text-white px-3 py-2 rounded inter font-semibold select-none">No reports created yet.</div>
@@ -113,36 +102,32 @@ const Item = ({ item, onDelete }: { item: IDiscoveryForList; onDelete: () => voi
             {item.name}
           </a>
         </div>
-        <div className="flex-grow flex items-center justify-end">
-          <div className="mt-1 flex items-center text-sm text-gray-500">
-            {item.status === REPORT_STATUS_PROCESSING && <i className="fa-solid fa-loader fa-spin text-amber-500" />}
-            {item.status === REPORT_STATUS_ERROR && <i className="fa-solid fa-times text-red-500" />}
-            {item.status === REPORT_STATUS_COMPLETED && <i className="fa-solid fa-check text-lime-500" />}
-            {item.status === REPORT_STATUS_QUEUED && <i className="fa-solid fa-loader fa-spin text-sky-500" />}
-            <span className="pl-2">{item.status}</span>
-          </div>
-          <div className="text-sm text-gray-500 pl-3">
-            <time dateTime={item.date}>{item.date}</time>
-          </div>
-          <div className="pl-3">
-            {(item.status === REPORT_STATUS_COMPLETED || item.status === REPORT_STATUS_ERROR) && (
-              <PopConfirm
-                placement="left"
-                title="Are you sure to delete this report?"
-                onConfirm={onDelete}
-                okText="Yes"
-                okType="danger"
-                okButtonProps={{
-                  type: 'primary',
-                }}
-                cancelText="No"
-              >
-                <div className="text-red-500 hover:text-red-600 cursor-pointer">
-                  <i className="fa-solid fa-trash-can" />
-                </div>
-              </PopConfirm>
-            )}
-          </div>
+        <div className="flex-grow text-sm flex items-center justify-end">
+          {item.status === REPORT_STATUS_PROCESSING && <i className="ri-refresh-line ri-lg text-amber-500" />}
+          {item.status === REPORT_STATUS_ERROR && <i className="ri-close-line ri-lg text-red-500" />}
+          {item.status === REPORT_STATUS_COMPLETED && <i className="ri-check-line ri-lg text-lime-500" />}
+          {item.status === REPORT_STATUS_QUEUED && <i className="ri-refresh-line ri-lg text-sky-500" />}
+          <span className="pl-2">{item.status}</span>
+          <time dateTime={item.date} className="text-gray-500 pl-3">
+            {item.date}
+          </time>
+          {(item.status === REPORT_STATUS_COMPLETED || item.status === REPORT_STATUS_ERROR) && (
+            <PopConfirm
+              placement="left"
+              title="Are you sure to delete this report?"
+              onConfirm={onDelete}
+              okText="Yes"
+              okType="danger"
+              okButtonProps={{
+                type: 'primary',
+              }}
+              cancelText="No"
+            >
+              <div className="text-red-500 hover:text-red-600 cursor-pointer pl-2">
+                <i className="ri-delete-bin-6-line" />
+              </div>
+            </PopConfirm>
+          )}
         </div>
       </div>
     </div>
