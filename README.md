@@ -4,7 +4,7 @@ The open source version of the original keyword tool code by SEO Ruler.
 
 You can support further development on [Patreon](https://www.patreon.com/_pablodev)
 
-Made by [Pablo Rosales](http://github.com/pablorosales) on its free time.
+HAcked together by [Pablo Rosales](http://github.com/pablorosales) on some free time.
 
 ![Screenshot](./screenshot.png)
 
