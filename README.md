@@ -6,6 +6,20 @@ You can support further development on [Patreon](https://www.patreon.com/_pablod
 
 Hacked together by [Pablo Rosales](http://github.com/pablorosales) on my free time.
 
+## Requirements
+
+For all features to work you'll need these APIs:
+
+* DataForSEO API key (for SERP data)
+* Keywords Everywhere API key (for keyword data)
+* Open-AI API key (for GPT-3)
+
+Not used yet but will be soon:
+
+* Browserless API key (for future features on SERP Analysis)
+* Huggingface API key (for future features)
+* Google API key (for Google NLP API use)
+
 ## Features
 
 Includes features like:
@@ -44,12 +58,14 @@ COOKIE_DOMAIN=localhost
 GOOGLE_USER_AGENT="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.67 Safari/537.36"
 
 # Update this ones to the actual values inside the quotes, you need all for all features to work
-GOOGLE_API_KEY="<your google api key>"
+SESSION_SECRET="<a random string>"
+# Required APIs
 D4S_API_USER="<your d4s api user>"
 D4S_API_PASS="<your d4s api pass>"
 KE_KEY="<your keywords everywhere key>"
 BROWSERLESS_API="<your browserless api key>"
-SESSION_SECRET="<a random string>"
+# For future features
+GOOGLE_API_KEY="<your google api key>"
 OPENAI_API_KEY="<your openai api key>"
 HUGGINGFACE_API_KEY="<your huggingface api key>"
 ```
