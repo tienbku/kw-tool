@@ -66,6 +66,16 @@ HUGGINGFACE_API_KEY="<your huggingface api key>"
 * Run on the root of the project: `docker-compose up -d`
 * Go to the browser and open `http://localhost:8080`
 
+## To update to the latest version
+
+* Do a git pull of the latest code
+* Run `docker compose up -d --build` to rebuild
+* Go to the browser and open `http://localhost:8080`
+
+## Bug reports or feature requests
+
+To report a bug or request a feature, please open an issue on [GitHub](https://github.com/PabloRosales/keyword-tool)
+
 ## License
 
 See [LICENSE](LICENSE).
