@@ -42,10 +42,10 @@ REDIS_PORT=6379
 CACHE_ENABLED=1
 BODY_PARSER_LIMIT=100kb
 COOKIE_DOMAIN=localhost
-SERVER_PORT=8000
-DOMAIN=http://localhost:8000
-SERVER_URL=http://localhost:8000
-CLIENT_ORIGIN_URL=http://localhost:8000
+SERVER_PORT=8080
+DOMAIN=http://localhost:8080
+SERVER_URL=http://localhost:8080
+CLIENT_ORIGIN_URL=http://localhost:8080
 APP_URL=http://localhost:8000
 GOOGLE_USER_AGENT="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.67 Safari/537.36"
 

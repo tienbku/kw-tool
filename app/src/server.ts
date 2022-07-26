@@ -18,7 +18,7 @@ import { viewTopicMap } from './controllers/viewTopicMap';
 import { viewDiscovery } from './controllers/viewDiscovery';
 import { getCountries, getDomains, getLanguages, getLocations } from './api/free-tools/complete';
 
-const port = 8080;
+const port = process.env.PORT || 8080;
 const app = express();
 
 const start = async () => {
