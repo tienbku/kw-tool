@@ -16,7 +16,7 @@ import { serviceDiscoveryItemAnalysis } from './services/serviceDiscoveryItemAna
 import { serviceDiscoverySerpsSimilarity } from './services/serviceDiscoverySerpsSimilarity';
 
 const app = express();
-const port = process.env.PORT || 8080;
+const port = 8081;
 
 const start = async () => {
   await connectDb();
@@ -46,5 +46,5 @@ const start = async () => {
 };
 
 start().then(() => {
-  console.log('Services running');
+  console.log(`Services running on port ${port}`);
 });
